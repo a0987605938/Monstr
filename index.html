@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang='en-US'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, user-scalable=no'><!-- disable user scalling -->
+<meta name='apple-mobile-web-app-capable' content='yes'/><!-- standalone -->
+<meta name='apple-mobile-web-app-status-bar-style' content='black'/>
+<title>monstr</title>
+<link rel='stylesheet' href='css/main.css'/>
+<link rel='stylesheet' href='css/mobile.css' media='screen and (max-device-width:768px) and (orientation:portrait), screen and (max-device-width:1024px) and (orientation:landscape)'/>
+<script src='libs/modernizr.js'></script>
+<script src='libs/loader.js'></script>
+</head>
+<body>
+<section id='game'>
+	<div class="background"></div> 
+	
+	<div class='screen' id='splash-screen'>
+		<h1 class='logo'>
+			<span>m</span>
+			<span>o</span>
+			<span>n</span>
+			<span>s</span>
+			<span>t</span>
+			<span>r</span>
+			<span>!</span>	
+		</h1>
+		<div class="progress">
+			<div class="indicator"></div>
+		</div>
+		<ul class="continue">
+			<li><button name='main-menu'>Click to continue</button></li>
+		</ul>
+	</div>
+	
+	<div class='screen' id='main-menu'>
+		<h2 class='logo'>
+			<span>m</span>
+			<span>o</span>
+			<span>n</span>
+			<span>s</span>
+			<span>t</span>
+			<span>r</span>
+			<span>!</span>	
+		</h2>
+		<ul class='menu'>
+			<li><button name='game-screen'>Play</button></li>
+			<li><button name='hiscore'>Highscore</button></li>
+			<li><button name='exit'>Exit</button></li>
+		</ul>
+	</div>
+	
+	<div class='screen' id='game-screen'>
+		<div class="game-board monster-size">
+			<div class="announcement"></div>
+		</div>
+		
+		<div class="game-info">
+			<label class="level">Level: <span></span></label>
+			<label class="score">Score: <span></span></label>
+		</div>
+		
+		<div class="time"><div class="indicator"></div></div>
+		<footer><button name="exit">Exit</button></footer>
+		<div class="pause-overlay"></div>
+	</div>
+	
+	<div class='screen' id='hiscore'>
+		<h2 class="logo">
+			<span>s</span>
+			<span>c</span>
+			<span>o</span>
+			<span>r</span>
+			<span>e</span>
+		</h2>
+		<ol class="score-list"></ol>
+		<footer>
+			<button name="back">Back</button>
+		</footer>
+	</div>
+	
+	<div class='screen' id='install-screen'>
+		<h1 class='logo'>
+			<span>m</span>
+			<span>o</span>
+			<span>n</span>
+			<span>s</span>
+			<span>t</span>
+			<span>r</span>
+			<span>!</span>
+		</h1>
+		<span>Click the <img src='img/install-icon.png' alt='Install icon'/> button to install the game to your home screen.</span>
+	</div>
+	
+	<!-- determine the appropriate monster size -->
+	<div id='monster-proto' class='monster-size'></div> 
+</section>
+</body>
+</html>
+</body>

@@ -1,0 +1,378 @@
+@font-face {
+    font-family: 'nomedregular';
+    src: url('nomedfont-webfont.eot');
+    src: url('nomedfont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('nomedfont-webfont.woff') format('woff'),
+         url('nomedfont-webfont.ttf') format('truetype'),
+         url('nomedfont-webfont.svg#nomedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+	margin: 0;
+	/* disable apple touch gesteurs */
+	-webkit-touch-callout: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-text-size-adjust: none;
+	-webkit-user-select: none;
+}
+
+/* game screen - game state */
+#game-screen .game-info{
+	width: 100%;
+	float: left;
+}
+
+#game-screen .game-info label{
+	display: inline-block;
+	height: 1.5em;
+	float: left;
+	font-size: 0.4em;
+	font-family: Arial;
+	font-weight: bold;
+	font-style: oblique;
+	color: white;
+	padding: 0.25em;
+}
+
+#game-screen .game-info .score{
+	float: right;
+}
+
+#game-screen .time{
+	margin: 0.5em auto 0;
+	width: 6em;
+	height: 0.5em;
+	overflow: hidden;
+	border: 0.08em solid white;
+	
+	-webkit-transform: skew(-25deg);
+	-moz-transform: skew(-25deg);
+	-o-transform: skew(-25deg);
+}
+
+#game-screen .time .indicator{
+	background-color: #90FC1B;
+	height: 100%;
+	width: 100%;
+}
+
+/* game-screen footer */
+#game-screen footer{
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 1.25em;
+	width: 100%;
+}
+
+.screen footer button{
+	margin-left: 1em; /* ? */
+	font-family: Arial;
+	font-style: oblique;
+	font-size: 0.5em;
+	font-weight: bold;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	
+}
+
+/* game-screen pause overlay */
+#game-screen .pause-overlay{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: rgba(40,40,40,0.5);
+}
+
+/* announcement */
+#game-screen .announcement{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -0.5em;
+	width: 100%;
+	font-family: Arial;
+	color: white;
+	text-align: center;
+	white-space: nowrap;
+	z-index: 20;
+	opacity: 0;
+	cursor: default;
+}
+
+.no-cssanimations #game-screen .announcement{
+	display: none;
+}
+
+.no-cssanimations #game-screen .announcement.active{
+	opacity: 1;
+	display: block;
+}
+
+@-webkit-keyframes zoomfade{
+	0%{
+		opacity: 1;
+		-webkit-transform: scale(0.5);
+	}
+	
+	25%{
+		opacity: 1;
+	}
+	
+	100%{
+		opacity: 0;
+		-webkit-transform: scale(1.5);
+	}
+}
+
+@-moz-keyframes zoomfade{
+	0%{
+		opacity: 1;
+		-moz-transform: scale(0.5);
+	}
+	
+	25%{
+		opacity: 1;
+	}
+	
+	100%{
+		opacity: 0;
+		-moz-transform: scale(1.5);
+	}
+}
+
+.zoomfade{
+	-webkit-animation-name: zoomfade;
+	-webkit-animation-duration: 2s;
+	-moz-animation-name: zoomfade;
+	-moz-animation-duration: 2s;
+}
+
+/* game wrapper */
+#game{
+	position: absolute;
+	left: 0;
+	top: 0;
+	
+	/* backup */
+	background-color: #00080E;
+	/* background-image: url('http://subtlepatterns.com/patterns/dark_mosaic.png'); */
+	
+	/* setting base font size */
+	font-size: 40px;  /* makes each cell take up 1em x 1em */
+	font-family: 'nomedregular',Arial;
+	
+	/* screen ratio */
+	width: 8em;
+	height: 12em;
+	
+	text-shadow: 0.075em 0.125em 0.15em rgb(0,0,0);
+}
+
+/* all screens */
+#game .screen{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: none; /* hide all screen except active */
+	z-index: 10;
+}
+
+/* active screen */
+#game .screen.active{
+	display: block; /* hide all screen except active */
+}
+
+/* background */
+#game .background{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%; /* used in javascript to run getBoundingClientRect */
+	height: 100%;
+	z-index: 0;
+}
+
+#game .background canvas{
+	width: 100%;
+	height: 100%;
+}
+
+/* splash-screen */
+#splash-screen{
+	text-align: center;
+	padding-top: 90px;
+}
+
+#splash-screen .continue{
+	display: none;
+}
+
+/* logo */
+.logo{
+	font-family: 'nomedregular';
+	font-size: 1.5em;
+	line-height: 0.9em;
+	margin: 0;
+	text-align: center;
+	color: #90FC1B;
+	letter-spacing: -15px; /* this is a glitch */
+}
+
+.logo span:nth-child(1){color:#F9BA15;}
+.logo span:nth-child(2){color:#;}
+.logo span:nth-child(3){color:#AD2BAD;}
+.logo span:nth-child(4){color:#DD0093;}
+.logo span:nth-child(5){color:#00AAFF;}
+.logo span:nth-child(6){color:#FD6100;}
+.logo span:nth-child(7){color:#A9D615;}
+
+/* progress bar */
+.progress{
+	margin: 0.5em auto 0;
+	width: 6em;
+	height: 0.5em;
+	overflow: hidden;
+	border: 0.08em solid white;
+	
+	-webkit-transform: skew(-25deg);
+	-moz-transform: skew(-25deg);
+	-o-transform: skew(-25deg);
+}
+
+.progress .indicator{
+	background-color: #90FC1B;
+	height: 100%;
+	width: 0%;
+}
+
+/* main-menu */
+#main-menu{
+	padding-top: 1.7em;
+}
+
+ul.continue, ul.menu{
+	list-style:none;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+ul.continue li{
+	margin: 0.5em 0;
+} 
+
+ul.menu li{
+	margin: 0.8em 0;
+}
+
+/* menu buttons */
+ul.continue li button, ul.menu li button{
+	-webkit-transform: skew(-25deg);
+	-moz-transform: skew(-25deg);
+	-o-transform: skew(-25deg);
+
+	font-size: 0.5em;
+	font-family: Arial;
+	font-weight: bold;
+	width: 10em;
+	color: white;
+	text-shadow: 0.05em 0.05em 0.25em black;
+	height: 1.5eml;
+	border: 0.13em solid white;
+	box-shadow: 0.2em 0.2em 0.3em black;
+	cursor: pointer;
+	
+	background: #DD0093;
+	/* insert webkit border-radius and box-shadow here */
+}
+
+ul.continue li button:active, ul.menu li button:active{
+	background: #90FC1B;
+}
+
+/* install-screen */
+#install-screen{
+	padding-top: 0.5em;
+	text-align: center;
+}
+
+#install-screen span{
+	font-size: 0.75em;
+	display: inline-block;
+	padding: 0 0.5em;
+}
+
+/* determine monster size */
+.monster-size{
+	font-size: 40px;
+}
+
+#monster-proto{
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	left: -1000px;
+}
+
+#game-screen .game-board{
+	position: relative;
+	width: 8em; /* this scales the game board */
+	height: 9em;
+	z-index: 1;
+}
+
+/* game-screen's canvas */
+#game-screen .game-board .board{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+/* game-screen's dom(css) */
+#game-screen .game-board .board-bg div{
+	position: absolute;
+	width: 1em;
+	height: 1em;
+}
+
+/* highscore-screen */
+#hiscore h2{
+	margin-top: 0.5em;
+}
+
+#hiscore ol.score-list{
+	font-family: Arial;
+	font-size: 0.5em;
+	font-style: oblique;
+	font-weight: bold;
+	color: white;
+	width: 75%;
+	margin: 0 10%;
+}
+
+#hiscore ol.score-list li{
+	margin: 3%;
+	width: 100%;
+}
+
+#hiscore ol.score-list li span:nth-child(1){
+	display: inline-block;
+	width: 70%:
+}
+
+#hiscore ol.score-list li span:nth-child(2){
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+}
